@@ -25,18 +25,42 @@ function Connexion(){
     }
     const infoFormulaire = async (e) =>{
         e.preventDefault()
+        let errors=0
+        for(let i =0; i<2; i++){
+            if(inputs.current[i].value.trim() === "" || inputs.current[i].value === null  ){
+                switch (i) {
+                    case 0:
+                        toast.error("Le champ Email est vide", { containerId:"error"})
+                        errors++
+                        break;
+                    case 1:
+                        toast.error("Le champ mot de passe est vide", { containerId: "error"})  
+                        errors++
+                        break ;
+                    default:
+                     
+                }                       
+            }
+        }
+        if(errors !==0){
+            return
+        }
         try {
             const creed = await signIn(
                 inputs.current[0].value,
                 inputs.current[1].value
             )
+            
             console.log(creed)
-            formRef.current.reset();
+            setTimeout(() => {
+
+                toast.success("Heureux de vous revoir !", {containerId:"succes"})
+            }, "1000");
             navigate("/private/private-home")
             
             
         } catch {
-            toast.error("Mot de passe incorrect", {position:"bottom-right"})
+            toast.error("Mot de passe incorrect", {containerId:"error"})
 
             
         }
@@ -45,7 +69,10 @@ function Connexion(){
 
     return(modalState.modalConnexion && 
         <>
-            <ToastContainer />
+            <ToastContainer containerId="error" position="bottom-right" />
+            <ToastContainer containerId="error" position="bottom-right" />
+            <ToastContainer containerId="succes" position="bottom-right"/>
+
             <div className="containermodalC">
                 
             

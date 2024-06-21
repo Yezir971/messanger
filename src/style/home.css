@@ -6,10 +6,20 @@
 .homeBackground{
     background: #DFDFDF no-repeat center center fixed;
     background-size: cover;
+    height: 100vh;
+    padding: 30px;
+
 }
 
 .logInscriptionBackground{
     background: #151516 no-repeat center center fixed;
     background-size: cover;
     height: 100vh;
+}
+
+.hiStyle{
+    color: #0004FC;
+}
+.hiNameStyle{
+    color: #0F107D;
 }

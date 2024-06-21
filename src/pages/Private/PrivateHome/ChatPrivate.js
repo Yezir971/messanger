@@ -6,6 +6,7 @@ import 'react-toastify/dist/ReactToastify.min.css';
 import "../../../style/home.css"
 
 function ChatPrivate(){
+    
     const navigate = useNavigate()
     function change(){
         navigate("/private/private-home")
@@ -22,10 +23,13 @@ function ChatPrivate(){
     }
     return(
         <>
-            <h1>page des chat private</h1>
-            <p onClick={logOut}>déconnexion </p>
-            <p onClick={() => change()} >home</p>
-            <ToastContainer />
+            <div className="homeBackground">
+                <h1>page des chat private</h1>
+                <p onClick={logOut}>déconnexion </p>
+                <p onClick={() => change()} >home</p>
+                <ToastContainer />
+
+            </div>
         </>
     )
 }

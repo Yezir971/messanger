@@ -1,0 +1,15 @@
+
+
+.navBar{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+}
+img{
+    width: 60px;
+}
+i{
+    cursor: pointer;
+    font-size: x-large;
+}

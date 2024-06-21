@@ -1,8 +1,8 @@
-import Home from "./pages/Home";
 import Private from "./pages/Private/Private";
 import ChatPrivate from "./pages/Private/PrivateHome/ChatPrivate";
 import HomePrivate from "./pages/Private/PrivateHome/HomePrivate";
 import {Route, Routes} from "react-router-dom"
+import Home from "./pages/Home";
 
 function App() {
   return (

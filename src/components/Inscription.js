@@ -31,15 +31,58 @@ function Inscription(){
 
     const infoFormulaire = async (e) =>{
         e.preventDefault()
-        console.log(inputs)
+        let errors =0;
+        for(let i =0; i<5; i++){
+            if(inputs.current[i].value.trim() === ""){
+                switch (i) {
+                    case 0:
+                        toast.error("Le champ nom est vide", { containerId:"error"})
+                        break ;                        
+
+                        
+                        
+                
+                    case 1:
+                        toast.error("Le champ prénom est vide", { containerId: "error"})
+                        
+                        break ;                        
+
+                        
+                
+                    case 2:
+                        toast.error("Le champ email est vide.", { containerId:"error"})
+                        break ;                        
+
+
+                        
+                
+                    case 3:
+                        toast.error("Le champ mot de passe est vide.", { containerId:"error"})
+                        break ;                        
+
+                        
+                        
+                
+                    case 4:
+                        toast.error("Le champ mot de passe de confirmation est vide.", { containerId:"error"})
+                        break ; 
+                    default:
+                                           
+                }
+            }
+        }
+        if(errors !==0){
+            return
+        }
         if(inputs.current[3].value.length <= 6 || inputs.current[4].value.length <= 6 ){
-            toast.error("Votre mot de passe doit contenir 6 caractères minimum.", {position:"bottom-right"})
+            toast.error("Le mot de passe doit faire minimum 6 caractères.", { containerId:"error"})
             return
         }
         if(inputs.current[3].value !== inputs.current[4].value){
-            toast.error("Le mot de passe de confirmation est différent.", {position:"bottom-right"})
+            toast.error("Le mot de passe de confirmation est différent du mot de passe.", {containerId:"error"})
             return
         }
+
 
         try {
             const creed = await signUp(
@@ -52,24 +95,33 @@ function Inscription(){
                 await setDoc(doc(db, "Users", user.uid), {
                     email:user.email,
                     nom: inputs.current[0].value,
-                    prenom: inputs.current[1].value
+                    prenom: inputs.current[1].value,
+                    id: user.uid
                 })
             }
-            formRef.current.reset();
             // toast.success("Inscription réussi !", {position:"bottom-right"})
+
+            toast.success("Votre compte a été crée avec succès !", {containerId:"succes"})
             navigate("/private/private-home")
             
             
-        } catch (error) {
-            toast.error(error.message, {position:"bottom-right"})
-
             
+        } catch (error) {
+            toast.error(error.message, {containerId:"error"})
         }
     }
 
     return(modalState.modalInscription &&
         <>
-            <ToastContainer />
+            <ToastContainer containerId="error" position="bottom-right" />
+            <ToastContainer containerId="error" position="bottom-right"/>
+            <ToastContainer containerId="error"position="bottom-right" />
+            <ToastContainer containerId="error" position="bottom-right"/>
+            <ToastContainer containerId="error" position="bottom-right"/>
+            <ToastContainer containerId="error" position="bottom-right"/>
+            <ToastContainer containerId="error" position="bottom-right"/>
+            <ToastContainer containerId="error" position="bottom-right"/>
+            <ToastContainer containerId="succes" position="bottom-right"/>
             <div  className="containermodalI" >
                 <h1 className="titreinscription">Inscription</h1>
                 <div className="containerLoginSign">
