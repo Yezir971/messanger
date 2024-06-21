@@ -1,0 +1,128 @@
+
+body{
+    font-family: "Montserrat", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+}
+
+label{
+    margin-bottom: 11px;
+}
+label, .texteSwitch{
+    font-weight: 700;
+}
+.texteSwitch span{
+    color: #5759F0;
+    cursor: pointer;
+}
+.titreinscription{
+    text-align: center;
+    color: white;
+}
+.titrePages, .texteSwitch{
+    text-align: center; 
+}
+
+.containerLogo{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 46px 0;
+}
+.logoSite{
+    width: 80px;
+}
+.containerLoginSign{
+    padding: 81px 0;
+    width: 100%;
+    background: #ffffffec;
+    border-radius: 70px 2px 2px 2px;
+}
+.containermodalC, .containermodalI{
+    overflow-x: hidden;
+}
+.containermodalC{
+    animation: slidein 1s ease forwards;
+}
+.error{
+    color: red;
+    text-align: center;
+}
+@keyframes slidein {
+    from {
+      transform: translateX(-20vw);
+    }
+  
+    to {
+      transform: translateX(100%);
+      transform:none;
+    }
+}
+.containermodalI{
+    animation: slideout 1s ease forwards;
+}
+@keyframes slideout {
+    from {
+      transform: translateX(20vw);
+
+    }
+  
+    to {
+      transform: translateX(100%);
+      transform:none;
+    }
+}
+
+
+
+form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 300px;
+    margin: auto;
+}
+input{
+    border: none;
+    
+}
+.inputSubmit{
+    margin-bottom:55px ;
+    color: #FAFAFA;
+    width: 95%;
+    height: 74px;
+    background: #151516;
+    text-align: center;
+    border-radius: 14px 0 14px 14px;
+    cursor: pointer;
+    font-size:large;
+    font-weight: 100;
+}
+.inputComponent{
+    margin-bottom:55px ;
+    background: #FAFAFA;
+    width: 86%;
+    border-radius: 14px;
+    padding: 13px;
+    display: flex;
+    flex-direction: column;
+}
+
+@media screen and (min-width:800px){
+    .containerLoginSign{
+        width: 800px;
+        margin: auto;
+    }
+        .inputComponent, .inputSubmit{
+            width: 130%;
+            margin-bottom: 37px;
+        }
+
+    .containerLoginSign{
+        padding: 30px 0 17px 0;
+    }
+    
+
+    
+}
