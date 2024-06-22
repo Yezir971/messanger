@@ -1,10 +1,14 @@
+import { useContext } from "react";
 import "../style/conversations.css"
 
 import { useNavigate } from "react-router-dom";
+import { MessageContexte } from "../context/messageContexte";
 
-function Conversations({ nom, prenom}){
+function Conversations({ nom, prenom, id}){
+    const { setUserSelect } = useContext(MessageContexte)
     const navigate = useNavigate()
     function change(){
+        setUserSelect(id)
         navigate("/private/private-message")
     }
     
@@ -14,8 +18,7 @@ function Conversations({ nom, prenom}){
         <div className="vignetteUser">  
             <i className="fa-solid fa-circle-user"></i>
             <div>
-                <p onClick={() => change()}>{nom} {prenom} </p>
-
+                <p onClick={() => change()}>{nom} {prenom} {id} </p>
             </div>
         </div>
     )
