@@ -1,0 +1,104 @@
+.blue, .black{
+    width: 100%;
+    height: 52px;
+    display: flex;
+    align-items: center;
+    color: #f7f7f9;
+
+
+}
+/* personalisation de la scroll bar  */
+/* Works on Firefox */
+* {
+    scrollbar-color:  #151516;
+}
+
+/* Works on Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+    width: 12px;
+}
+
+*::-webkit-scrollbar-track {
+    background  : #151516;
+}
+
+*::-webkit-scrollbar-thumb {
+    background-color: blue;
+    border-radius: 100px;
+    border: 3px solid #151516;
+}
+
+/* personalisation de la scroll bar  */
+
+ul{
+    overflow:auto;
+    height: 75vh;  
+
+}
+.formulaireMessage{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    padding: 10px;
+    gap: 15px;
+}
+.buttonSubmitMessage{
+    border: none;
+    background: none;
+}
+.inputTypeTextMessage{
+    width: 100%;
+}
+.containerFormulaire{
+    -webkit-box-shadow: 4px 13px 31px 5px rgba(0,0,0,0.58); 
+    box-shadow: 4px 13px 31px 5px rgba(0,0,0,0.58);
+    width: 100%;
+    background: #FFFFFF;
+    height: 54px;
+    border-radius: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.logoFormulaire{
+    height: 100%;
+}
+.blue{
+    justify-content: end;
+}
+.black i{
+    color: #151516;
+    font-size: xxx-large;
+    margin-right: 10px;
+
+}
+li{
+    list-style: none;
+    margin: 20px 0;
+}
+.bule1, .bule2{
+    height: 100%;
+    width: 253px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 11px;
+}
+.bule1{
+    background: #3639CF;
+    border-radius: 20px 20px 2px 20px;
+}
+.bule2{
+    background: #151516;
+    border-radius: 2px 20px 20px 20px;
+
+}
+.dateBlue, .dateBlack{
+    color: #ACADC7;
+}
+.dateBlue{
+    margin-right: 20px;
+}
+.dateBlack{
+    margin-left: 20px;
+}

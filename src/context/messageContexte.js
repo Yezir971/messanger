@@ -10,7 +10,7 @@ export function MessageContexteProvider(props){
 
     const [detailUser, setDetailUser] = useState(null)
     const [allUser, setAllUser] = useState([])
-    const [userSelect, setUserSelect] = useState('')
+    const [userSelect, setUserSelect] = useState([])
     const informationUser = async () => {
         auth.onAuthStateChanged(async (user) => {
             if(user){

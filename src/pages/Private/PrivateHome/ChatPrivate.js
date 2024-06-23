@@ -1,12 +1,14 @@
-import { signOut } from "firebase/auth";
-import { useNavigate } from "react-router-dom";
-import { auth, db } from "../../../firebase-config";
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.min.css';
+import "../../../style/message.css";
 import "../../../style/home.css"
+import 'react-toastify/dist/ReactToastify.min.css';
+
+import { auth, dataBase } from "../../../firebase-config";
+import {   onValue, push, ref, set } from "firebase/database";
+
+
+import { useNavigate } from "react-router-dom";
 import { useContext, useEffect, useRef, useState } from "react";
 import { MessageContexte } from "../../../context/messageContexte";
-import { addDoc, collection, getDocs, orderBy, query, where } from "firebase/firestore";
 
 function ChatPrivate() {
     const inputRef = useRef([]);
@@ -25,67 +27,88 @@ function ChatPrivate() {
         navigate("/private/private-home");
     }
 
-    const logOut = async () => {
-        try {
-            await signOut(auth);
-            navigate('/');
-        } catch (error) {
-            toast.error('Nous n\'avons pas réussi à vous déconnecter, vérifier votre connexion internet et réessayer !', { position: "bottom-right" });
-        }
-    };
+
 
     const sendMessage = async (e) => {
         e.preventDefault();
         try {
             const user = auth.currentUser;
             if (user) {
-                await addDoc(collection(db, "Messages"), {
+                const messageRef = ref(dataBase, 'Messages')
+                const newMessageRef = push(messageRef)
+                set(newMessageRef, {
                     message: inputRef.current[0].value,
-                    user_id_send: detailUser.id,
-                    user_id_recieve: userSelect,
-                    id_message: detailUser.id + userSelect,
+                    id_message: detailUser.id + userSelect.id,
                     dateSend: Date.now()
                 });
 
-                inputRef.current[0].value = ""; // Reset input after sending message
+                inputRef.current[0].value = ""; // Reset le formulaire après avoir envoyer le message
             }
         } catch (error) {
             console.log('une erreur est survenue, veuillez vérifier votre connexion internet et actualiser la page');
         }
     };
 
-    async function getMessages() {
-        const combinedQuery = query(collection(db, "Messages"), where("id_message", "in", [detailUser.id + userSelect, userSelect + detailUser.id]), orderBy("dateSend", "desc"));
-        const querySnapshot = await getDocs(combinedQuery);
-        const tableMessage = [];
-        querySnapshot.forEach((doc) => {
-            tableMessage.push(doc.data().message);
-        });
-        setMessagesListe(tableMessage);
-    }
-
     useEffect(() => {
-        getMessages();
-    }, [detailUser, userSelect]);
+        const messageRef = ref(dataBase, "Messages");
+        const unsubscribe = onValue(messageRef, (snapshot) => {
+            if (snapshot.exists()) {
+                const messageArray = Object.entries(snapshot.val()).map(([id, data]) => ({
+                    id,
+                    ...data,
+                }));
+                setMessagesListe(messageArray);
+            } else {
+                console.log("Aucune data a été récupérée !");
+            }
+        });
 
+        return () => unsubscribe(); // Clean up the listener on component unmount, merci chatgpt pour la ligne 100, sans elle mon code marche pas <3
+    }, []);
+
+    const convertTime = (unixTimestamp) => {
+        const date = new Date(unixTimestamp);
+        return date.toLocaleString();
+    }
     return (
         <>
             <div className="homeBackground">
-                <h1>page des chat private</h1>
-                <p onClick={logOut}>déconnexion </p>
-                <p onClick={() => change()}>home</p>
-                <ToastContainer />
-                <form ref={formRef} onSubmit={sendMessage}>
-                    <input ref={addInput} type="text" />
-                    <input type="submit" />
-                </form>
+                <h1>{userSelect.nom} {userSelect.prenom}</h1>
+                <i onClick={() => change()} className="fa-solid fa-arrow-left"></i>
+
                 <ul>
-                    {messagesListe.toReversed().map((doc, id) => (
-                        <li key={id}>
-                            {doc}
-                        </li>
+                    {messagesListe.map((doc, id) => (
+                        (((doc.id_message.substr(0,28) === detailUser.id || doc.id_message.substr(0,28) === userSelect.id) && ( doc.id_message.substr(28) === detailUser.id || doc.id_message.substr(28) === userSelect.id )  ) && (
+                            (doc.id_message === detailUser.id + userSelect.id ? (
+                                
+                                <li className="blue" key={id}>
+                                    <p className="dateBlue">{ convertTime(doc.dateSend) }</p>
+                                    <span className="bule1">{doc.message}</span>
+                                </li>
+
+                            ) : (
+
+                                <li className="black" key={id}>
+                                    <i className="fa-solid fa-circle-user"></i>
+                                    <span className="bule2">{doc.message}</span>
+                                    <p className="dateBlack">{ convertTime(doc.dateSend) }</p>
+
+                                </li>
+                            ))
+                        )) 
                     ))}
                 </ul>
+                <div className="containerFormulaire">
+                    <form className="formulaireMessage" ref={formRef} onSubmit={sendMessage}>
+                        <i className="fa-solid fa-circle-user logoFormulaire"></i>
+
+                        <input className="inputTypeTextMessage" ref={addInput} type="text" placeholder="Votre messsage"/>
+                        <button className="buttonSubmitMessage" type="submit">
+                            <i className="fa-solid fa-paper-plane" style={{color: "#3639cf"}}></i>
+                        </button>
+                    </form>
+
+                </div>
             </div>
         </>
     );

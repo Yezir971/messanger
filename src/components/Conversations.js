@@ -8,7 +8,11 @@ function Conversations({ nom, prenom, id}){
     const { setUserSelect } = useContext(MessageContexte)
     const navigate = useNavigate()
     function change(){
-        setUserSelect(id)
+        setUserSelect({
+            "id": id,
+            "nom": nom,
+            "prenom":prenom
+        })
         navigate("/private/private-message")
     }
     
@@ -18,7 +22,7 @@ function Conversations({ nom, prenom, id}){
         <div className="vignetteUser">  
             <i className="fa-solid fa-circle-user"></i>
             <div>
-                <p onClick={() => change()}>{nom} {prenom} {id} </p>
+                <p onClick={() => change()}>{nom} {prenom} </p>
             </div>
         </div>
     )

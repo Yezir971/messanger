@@ -81,7 +81,7 @@ function Connexion(){
                 </div>
                 <div className="containerLoginSign">
                     <h1 className="titrePages">Connexion</h1>
-                    <form ref={formRef} onSubmit={infoFormulaire}>
+                    <form className="formulaire" ref={formRef} onSubmit={infoFormulaire}>
                         <div className="inputComponent">
                             <label htmlFor="mail">Email</label>
                             <input ref={addInputs} id="mail" placeholder="Votre mail ici" type="email" />

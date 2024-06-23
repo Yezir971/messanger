@@ -75,7 +75,7 @@ label, .texteSwitch{
 
 
 
-form{
+.formulaire{
     display: flex;
     flex-direction: column;
     justify-content: center;
