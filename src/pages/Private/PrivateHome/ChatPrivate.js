@@ -6,7 +6,7 @@ import { auth, dataBase } from "../../../firebase-config";
 import {   onValue, push, ref, set } from "firebase/database";
 
 
-import { useNavigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 import { useContext, useEffect, useRef, useState } from "react";
 import { MessageContexte } from "../../../context/messageContexte";
 
@@ -65,12 +65,11 @@ function ChatPrivate() {
 
         return () => unsubscribe(); // Clean up the listener on component unmount, merci chatgpt pour la ligne 100, sans elle mon code marche pas <3
     }, []);
-
     const convertTime = (unixTimestamp) => {
         const date = new Date(unixTimestamp);
         return date.toLocaleString();
     }
-    return (
+    return (userSelect.length !== 0 ? (
         <>
             <div className="homeBackground">
                 <h1>{userSelect.nom} {userSelect.prenom}</h1>
@@ -111,6 +110,12 @@ function ChatPrivate() {
                 </div>
             </div>
         </>
+        ) : (
+            <>
+                <h1>connard tu as casser mon app !</h1>
+                <Navigate to="/private/private-home" />
+            </>
+        )
     );
 }
 

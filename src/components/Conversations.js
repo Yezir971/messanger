@@ -21,7 +21,7 @@ function Conversations({ nom, prenom, id}){
     return(
         <div className="vignetteUser">  
             <i className="fa-solid fa-circle-user"></i>
-            <div>
+            <div className="containerNomPrenomVignetteUser">
                 <p onClick={() => change()}>{nom} {prenom} </p>
             </div>
         </div>

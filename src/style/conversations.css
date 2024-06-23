@@ -1,7 +1,40 @@
 .vignetteUser{
     display: flex;
     cursor: pointer;
-    border: solid 1px black;
+    border-bottom: solid 1px #ACADC7;
     height: 48px;
+    gap: 30px;
+    margin: 20px auto;
+    width: 100%;
     
+}
+.vignetteUser i {
+    font-size: xx-large;
+}
+
+.containerNomPrenomVignetteUser{
+    display: flex;
+    justify-content: start;
+    align-items: start;
+}
+.sousTitreConv{
+    margin: 40px 0;
+}
+@media screen and (min-width:560px){
+    .vignetteUser{
+        width: 80%;
+    
+    }
+}
+@media screen and (min-width:760px){
+    .vignetteUser{
+        width: 60%;
+    
+    }
+}
+@media screen and (min-width:1000px){
+    .vignetteUser{
+        width: 40%;
+    
+    }
 }

@@ -20,7 +20,7 @@ function HomePrivate(){
                         <Nav />
                         <DateT />
                         <h1><span className="hiStyle">Hi,</span> <span className="hiNameStyle">{detailUser.nom} {detailUser.prenom}</span></h1>
-                        <h2>Voici les utilisateurs avec qui tu peux discuter !</h2>
+                        <h2 className="sousTitreConv">Voici les utilisateurs avec qui tu peux discuter !</h2>
                         {allUser.map((doc) => {
                             return( doc.id !== detailUser.id && (
                                 <Conversations

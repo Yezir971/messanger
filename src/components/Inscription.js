@@ -125,8 +125,8 @@ function Inscription(){
             <div  className="containermodalI" >
                 <h1 className="titreinscription">Inscription</h1>
                 <div className="containerLoginSign">
-                    <form ref={formRef} onSubmit={infoFormulaire}>
-                        <div className="formulaire inputComponent">
+                    <form className="formulaire " ref={formRef} onSubmit={infoFormulaire}>
+                        <div className="inputComponent">
                             <label htmlFor="nom">Nom</label>
                             <input 
                             ref={addInputs}
