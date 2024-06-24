@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.js": "/messanger/static/js/main.5f263573.js",
+    "main.js": "/messanger/static/js/main.7d09b5bf.js",
     "index.html": "/messanger/index.html",
-    "main.5f263573.js.map": "/messanger/static/js/main.5f263573.js.map"
+    "main.7d09b5bf.js.map": "/messanger/static/js/main.7d09b5bf.js.map"
   },
   "entrypoints": [
-    "static/js/main.5f263573.js"
+    "static/js/main.7d09b5bf.js"
   ]
 }
