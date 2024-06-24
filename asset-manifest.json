@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/messanger/static/css/main.d36f5dd7.css",
-    "main.js": "/messanger/static/js/main.7311dc6a.js",
+    "main.js": "/messanger/static/js/main.5d43c6ff.js",
     "static/media/logo-taille-reel-cat.svg": "/messanger/static/media/logo-taille-reel-cat.410e9d3802bbde40f5ec6c318d67e377.svg",
     "static/media/logo-taille-reel-cat1.svg": "/messanger/static/media/logo-taille-reel-cat1.9b30e7775a90a45b748d981469574d92.svg",
     "index.html": "/messanger/index.html",
     "main.d36f5dd7.css.map": "/messanger/static/css/main.d36f5dd7.css.map",
-    "main.7311dc6a.js.map": "/messanger/static/js/main.7311dc6a.js.map"
+    "main.5d43c6ff.js.map": "/messanger/static/js/main.5d43c6ff.js.map"
   },
   "entrypoints": [
     "static/css/main.d36f5dd7.css",
-    "static/js/main.7311dc6a.js"
+    "static/js/main.5d43c6ff.js"
   ]
 }
