@@ -7,7 +7,7 @@ export const MessageContexte = createContext()
 
 export function MessageContexteProvider(props){
 
-
+    const [ navigates , setNavigates ] = useState(false)
     const [detailUser, setDetailUser] = useState(null)
     const [allUser, setAllUser] = useState([])
     const [userSelect, setUserSelect] = useState([])
@@ -35,7 +35,7 @@ export function MessageContexteProvider(props){
 
     return(
         <>
-            <MessageContexte.Provider value={{ detailUser, allUser,userSelect, setUserSelect }}>
+            <MessageContexte.Provider value={{ detailUser, allUser,userSelect, setUserSelect, navigates, setNavigates }}>
                 {props.children}
             </MessageContexte.Provider>
 

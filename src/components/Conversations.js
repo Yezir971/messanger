@@ -1,30 +1,41 @@
 import { useContext } from "react";
 import "../style/conversations.css"
 
-import { useNavigate } from "react-router-dom";
-import { MessageContexte } from "../context/messageContexte";
+// import { useNavigate } from "react-router-dom";
+import { MessageContexte } from "../context/messageContexte.js";
+
 
 function Conversations({ nom, prenom, id}){
-    const { setUserSelect } = useContext(MessageContexte)
-    const navigate = useNavigate()
+    const { setUserSelect , userSelect, setNavigates } = useContext(MessageContexte)
+    // const navigate = useNavigate()
     function change(){
         setUserSelect({
             "id": id,
             "nom": nom,
             "prenom":prenom
         })
-        navigate("/private/private-message")
+        setNavigates(true)
+        // navigate("/private/private-message")
     }
     
-
+    console.log(userSelect.id !== undefined )
 
     return(
-        <div className="vignetteUser">  
-            <i className="fa-solid fa-circle-user"></i>
-            <div className="containerNomPrenomVignetteUser">
-                <p onClick={() => change()}>{nom} {prenom} </p>
-            </div>
-        </div>
+        <>
+
+                <div onClick={() => change()} className="vignetteUser">  
+                    <i className="fa-solid fa-circle-user"></i>
+                    <div className="containerNomPrenomVignetteUser">
+                        <p >{nom} {prenom} </p>
+                    </div>
+                </div>
+
+            
+
+
+            
+        
+        </>
     )
 }
 

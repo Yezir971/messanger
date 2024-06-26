@@ -1,14 +1,16 @@
 import logo from "../img/logo-taille-reel-cat.svg"
-import { useContext, useRef } from "react"
-import { UserContext } from "../context/userContext"
-import { useNavigate } from "react-router-dom"
+import { useContext, useRef, useState } from "react"
+import { UserContext } from "../context/userContext.js"
+// import { useNavigate } from "react-router-dom"
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.min.css';
 import "../style/loginSign.css"
 
 function Connexion(){
     const { modalState, toggleModals, signIn } = useContext(UserContext)
-    const navigate = useNavigate()
+    // const navigate = useNavigate()
+    const [ hiddenMdpConnexion, setHiddenMdpConnexion ] = useState(true)
+
 
     function toggle(event){
         document.documentElement.style.overflow = 'hidden';
@@ -56,7 +58,7 @@ function Connexion(){
 
                 toast.success("Heureux de vous revoir !", {containerId:"succes"})
             }, "1000");
-            navigate("/private/private-home")
+            // navigate("/private/private-home")
             
             
         } catch {
@@ -86,10 +88,23 @@ function Connexion(){
                             <label htmlFor="mail">Email</label>
                             <input ref={addInputs} id="mail" placeholder="Votre mail ici" type="email" />
                         </div>
-                        <div className="inputComponent">
-                            <label htmlFor="mdp">Mot de passe</label>
-                            <input ref={addInputs} id="mdp" placeholder="Votre mot de passe ici" type="password" />
-                        </div>
+                            <div className="inputComponent">
+                                <label htmlFor="mdp">Mot de passe</label>
+                                {hiddenMdpConnexion ? (
+                                <div className="containerinputEye">
+                                    <input ref={addInputs} id="mdp" placeholder="Votre mot de passe ici" type="password" />
+                                    <i onClick={() => { setHiddenMdpConnexion(false)}} className="fa-solid fa-eye"></i>
+                                </div>
+
+                                ) : (
+                                <div className="containerinputEye">
+                                    <input ref={addInputs} id="mdp" placeholder="Votre mot de passe ici" type="text" />
+                                    <i onClick={() => { setHiddenMdpConnexion(true)}} className="fa-solid fa-eye-slash"></i>
+                                </div>
+
+                                )}
+                            </div>
+
 
 
                         <input className="inputSubmit" type="submit" value={"connexion"}/>

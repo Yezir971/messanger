@@ -1,19 +1,20 @@
-import { useContext, useRef } from "react"
-import { UserContext } from "../context/userContext"
+import { useContext, useRef, useState } from "react"
+import { UserContext } from "../context/userContext.js"
 import { auth, db } from "../firebase-config"
 import { setDoc, doc } from "firebase/firestore"
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.min.css';
-import { useNavigate } from "react-router-dom"
+// import { useNavigate } from "react-router-dom"
 import "../style/loginSign.css"
 
 
 function Inscription(){
     const { modalState, toggleModals, signUp } = useContext(UserContext)
-    const navigate = useNavigate()
+    // const navigate = useNavigate()
 
 
-
+    const [ hiddenMdp, setHiddenMdp ] = useState(true)
+    const [ hiddenMdpConfirme, setHiddenMdpConfirme ] = useState(true)
     const toggle = event =>{
         document.documentElement.style.overflow = 'hidden';
         toggleModals(event)
@@ -102,7 +103,7 @@ function Inscription(){
             // toast.success("Inscription réussi !", {position:"bottom-right"})
 
             toast.success("Votre compte a été crée avec succès !", {containerId:"succes"})
-            navigate("/private/private-home")
+            // navigate("/private/private-home")
             
             
             
@@ -153,26 +154,64 @@ function Inscription(){
                             placeholder="Votre mail ici" 
                             type="email" />
                         </div>
+                        {hiddenMdp ? (
+                            <div className="inputComponent">
+                                <label htmlFor="mdp">Mot de passe</label>
+                                <div className="containerinputEye">
+                                    <input 
+                                    ref={addInputs}
+                                    id="mdp" 
+                                    placeholder="Votre mot de passe ici" 
+                                    type="password" />
+                                    <i onClick={() => { setHiddenMdp(false)}} className="fa-solid fa-eye"></i>
+                                </div>
 
-                        <div className="inputComponent">
-                            <label htmlFor="mdp">Mot de passe</label>
-                            <input 
-                            ref={addInputs}
-                            id="mdp" 
-                            placeholder="Votre mot de passe ici" 
-                            type="password" />
-                        </div>
+                            </div>
+                        ) : (
+                            <div className="inputComponent">
+                                <label htmlFor="mdp">Mot de passe</label>
+                                <div className="containerinputEye">
+                                    <input 
+                                    ref={addInputs}
+                                    id="mdp" 
+                                    placeholder="Votre mot de passe ici" 
+                                    type="text" />
+                                    <i onClick={() => { setHiddenMdp(true)}} className="fa-solid fa-eye-slash"></i>
+                                </div>
+                                
+                            </div>
+                        )}
 
-                        <div className="inputComponent">
-                            <label htmlFor="confirmMdp">Confirmez votre mot de passe</label>
-                            <input 
-                            ref={addInputs}
-                            id="confirmMdp" 
-                            placeholder="Confirmez votre motre mot de passe ici" 
-                            type="password" />
-                        </div>
+                        {hiddenMdpConfirme ? (
+                            <div className="inputComponent">
+                                <label htmlFor="confirmMdp">Confirmez votre mot de passe</label>
+                                <div className="containerinputEye">
+                                    <input 
+                                    ref={addInputs}
+                                    id="confirmMdp" 
+                                    placeholder="Confirmez votre mot de passe ici" 
+                                    type="password" />
+                                    <i onClick={() => { setHiddenMdpConfirme(false)}} className="fa-solid fa-eye"></i>
+                                </div>
+                            </div>
 
-                        <input className="inputSubmit" type="submit" value={"connexion"}/>
+                        ) : (
+                            
+                            <div className="inputComponent">
+                                <label htmlFor="confirmMdp">Confirmez votre mot de passe</label>
+                                <div className="containerinputEye">
+                                    <input 
+                                    ref={addInputs}
+                                    id="confirmMdp" 
+                                    placeholder="Confirmez votre mot de passe ici" 
+                                    type="text" />
+                                    <i onClick={() => { setHiddenMdpConfirme(true)}} className="fa-solid fa-eye-slash"></i>
+                                </div>
+
+                            </div>
+                        )}
+
+                        <input className="inputSubmit" type="submit" value={"inscription"}/>
                     </form>
                     <p className="texteSwitch">Déjà un compte, <span onClick={()=>toggle("connexion") } >connectez-vous</span></p>
 

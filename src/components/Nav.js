@@ -2,18 +2,18 @@ import { signOut } from "firebase/auth";
 import logo from "../img/logo-taille-reel-cat1.svg"
 import { auth } from "../firebase-config";
 import { toast, ToastContainer } from "react-toastify";
-import {  useNavigate } from "react-router-dom";
+// import {  useNavigate } from "react-router-dom";
 import "../style/nav.css"
 
 
 
 
 function Nav(){
-    const navigate = useNavigate()
+    // const navigate = useNavigate()
     const logout = async ()=>{
         try {
             await signOut(auth)
-            navigate('/')
+            // navigate('/messanger')
 
             
         } catch (error) {

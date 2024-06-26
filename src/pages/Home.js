@@ -1,8 +1,8 @@
-import Connexion from "../components/Connexion";
-import Inscription from "../components/Inscription";
-import { useContext } from "react";
-import { UserContext } from "../context/userContext";
 import "../style/home.css"
+import Connexion from "../components/Connexion.js";
+import Inscription from "../components/Inscription.js";
+import { useContext } from "react";
+import { UserContext } from "../context/userContext.js";
 import { Navigate } from "react-router-dom";
 
 

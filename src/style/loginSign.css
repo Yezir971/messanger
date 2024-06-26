@@ -18,6 +18,7 @@ label, .texteSwitch{
 .titreinscription{
     text-align: center;
     color: white;
+    margin: 46px 0;
 }
 .titrePages, .texteSwitch{
     text-align: center; 
@@ -34,7 +35,7 @@ label, .texteSwitch{
 }
 .containerLoginSign{
     padding: 81px 0;
-    width: 100%;
+    /* width: 100%; */
     background: #ffffffec;
     border-radius: 70px 2px 2px 2px;
 }
@@ -60,6 +61,14 @@ label, .texteSwitch{
 }
 .containermodalI{
     animation: slideout 1s ease forwards;
+    height: 100vh;
+}
+.containerinputEye{
+    display: flex;
+    justify-content: space-between;
+}
+#confirmMdp, #mdp{
+    width: 84%;
 }
 @keyframes slideout {
     from {

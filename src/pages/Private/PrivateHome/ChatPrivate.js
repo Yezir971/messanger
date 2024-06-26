@@ -6,16 +6,20 @@ import { auth, dataBase } from "../../../firebase-config";
 import {   onValue, push, ref, set } from "firebase/database";
 
 
-import { Navigate, useNavigate } from "react-router-dom";
+// import { Navigate, useNavigate } from "react-router-dom";
 import { useContext, useEffect, useRef, useState } from "react";
-import { MessageContexte } from "../../../context/messageContexte";
+import { MessageContexte } from "../../../context/messageContexte.js";
 
 function ChatPrivate() {
     const inputRef = useRef([]);
     const formRef = useRef();
-    const { detailUser, userSelect } = useContext(MessageContexte);
+    const listeMessages = useRef(null)
+
+    
+    const { detailUser, userSelect, setNavigates } = useContext(MessageContexte);
     const [messagesListe, setMessagesListe] = useState([]);
-    const navigate = useNavigate();
+    // const navigate = useNavigate();
+
 
     const addInput = el => {
         if (el && !inputRef.current.includes(el)) {
@@ -24,7 +28,10 @@ function ChatPrivate() {
     };
 
     function change() {
-        navigate("/private/private-home");
+        setNavigates(false)
+
+        // setUserSelect([])
+        // navigate("/private/private-home");
     }
 
 
@@ -50,6 +57,12 @@ function ChatPrivate() {
     };
 
     useEffect(() => {
+        if (listeMessages.current) {
+            listeMessages.current.scrollTop = listeMessages.current.scrollHeight;
+        }
+      }, [messagesListe]);
+
+    useEffect(() => {
         const messageRef = ref(dataBase, "Messages");
         const unsubscribe = onValue(messageRef, (snapshot) => {
             if (snapshot.exists()) {
@@ -72,31 +85,33 @@ function ChatPrivate() {
     return (userSelect.length !== 0 ? (
         <>
             <div className="homeBackground">
-                <h1>{userSelect.nom} {userSelect.prenom}</h1>
+                <h1 className="titreNomPrenomUtilisateurSelectionner">{userSelect.nom} {userSelect.prenom}</h1>
                 <i onClick={() => change()} className="fa-solid fa-arrow-left"></i>
+                <div>
+                    <ul ref={listeMessages}>
+                        {messagesListe.map((doc, id) => (
+                            (((doc.id_message.substr(0,28) === detailUser.id || doc.id_message.substr(0,28) === userSelect.id) && ( doc.id_message.substr(28) === detailUser.id || doc.id_message.substr(28) === userSelect.id )  ) && (
+                                (doc.id_message === detailUser.id + userSelect.id ? (
+                                    
+                                    <li className="blue" key={id}>
+                                        <p className="dateBlue">{ convertTime(doc.dateSend) }</p>
+                                        <span className="bule1">{doc.message}</span>
+                                    </li>
 
-                <ul>
-                    {messagesListe.map((doc, id) => (
-                        (((doc.id_message.substr(0,28) === detailUser.id || doc.id_message.substr(0,28) === userSelect.id) && ( doc.id_message.substr(28) === detailUser.id || doc.id_message.substr(28) === userSelect.id )  ) && (
-                            (doc.id_message === detailUser.id + userSelect.id ? (
-                                
-                                <li className="blue" key={id}>
-                                    <p className="dateBlue">{ convertTime(doc.dateSend) }</p>
-                                    <span className="bule1">{doc.message}</span>
-                                </li>
+                                ) : (
 
-                            ) : (
+                                    <li className="black" key={id}>
+                                        <i className="fa-solid fa-circle-user"></i>
+                                        <span className="bule2">{doc.message}</span>
+                                        <p className="dateBlack">{ convertTime(doc.dateSend) }</p>
 
-                                <li className="black" key={id}>
-                                    <i className="fa-solid fa-circle-user"></i>
-                                    <span className="bule2">{doc.message}</span>
-                                    <p className="dateBlack">{ convertTime(doc.dateSend) }</p>
+                                    </li>
+                                ))
+                            )) 
+                        ))}
+                    </ul>
 
-                                </li>
-                            ))
-                        )) 
-                    ))}
-                </ul>
+                </div>
                 <div className="containerFormulaire">
                     <form className="formulaireMessage" ref={formRef} onSubmit={sendMessage}>
                         <i className="fa-solid fa-circle-user logoFormulaire"></i>
@@ -113,7 +128,8 @@ function ChatPrivate() {
         ) : (
             <>
                 <h1>connard tu as casser mon app !</h1>
-                <Navigate to="/private/private-home" />
+
+                {/* <Navigate to="/private/private-home" /> */}
             </>
         )
     );

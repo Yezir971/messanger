@@ -1,18 +1,20 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import App from './App';
+// import App from './App.js';
 import { BrowserRouter } from 'react-router-dom';
-import { UserContextProvider } from './context/userContext';
-import { MessageContexteProvider } from './context/messageContexte';
+import { UserContextProvider } from './context/userContext.js';
+import { MessageContexteProvider } from './context/messageContexte.js';
+
+import App from './App';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <BrowserRouter>
-    <MessageContexteProvider>
-        <UserContextProvider>
-          <App />
-        </UserContextProvider>
-    </MessageContexteProvider>
-  </BrowserRouter>
+  <MessageContexteProvider>
+    <UserContextProvider>
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
+    </UserContextProvider>
+  </MessageContexteProvider>
 );
 
