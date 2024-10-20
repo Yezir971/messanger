@@ -116,7 +116,7 @@ function ChatPrivate() {
                     <form className="formulaireMessage" ref={formRef} onSubmit={sendMessage}>
                         <i className="fa-solid fa-circle-user logoFormulaire"></i>
 
-                        <input className="inputTypeTextMessage" ref={addInput} type="text" placeholder="Votre messsage"/>
+                        <input className="inputTypeTextMessage" ref={addInput} type="text" placeholder="Votre message"/>
                         <button className="buttonSubmitMessage" type="submit">
                             <i className="fa-solid fa-paper-plane" style={{color: "#3639cf"}}></i>
                         </button>
@@ -127,7 +127,7 @@ function ChatPrivate() {
         </>
         ) : (
             <>
-                <h1>connard tu as casser mon app !</h1>
+                <h1>Il y a un léger problème avec l'app ! </h1>
 
                 {/* <Navigate to="/private/private-home" /> */}
             </>
