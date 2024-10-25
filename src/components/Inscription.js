@@ -213,7 +213,7 @@ function Inscription(){
 
                         <input className="inputSubmit" type="submit" value={"inscription"}/>
                     </form>
-                    <p className="texteSwitch">Déjà un compte, <span onClick={()=>toggle("connexion") } >connectez-vous</span></p>
+                    <p className="texteSwitch">Déjà un compte ? <span onClick={()=>toggle("connexion") } >connectez-vous</span></p>
 
 
                 </div> 

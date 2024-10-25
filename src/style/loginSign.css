@@ -12,6 +12,7 @@ label, .texteSwitch{
     font-weight: 700;
 }
 .texteSwitch span{
+    text-decoration: underline;
     color: #5759F0;
     cursor: pointer;
 }
@@ -22,6 +23,9 @@ label, .texteSwitch{
 }
 .titrePages, .texteSwitch{
     text-align: center; 
+}
+.titrePages{
+    margin-bottom: 30px;
 }
 
 .containerLogo{
@@ -34,7 +38,7 @@ label, .texteSwitch{
     width: 80px;
 }
 .containerLoginSign{
-    padding: 81px 0;
+    padding: 30px 0;
     /* width: 100%; */
     background: #ffffffec;
     border-radius: 70px 2px 2px 2px;
@@ -123,13 +127,13 @@ input{
         width: 800px;
         margin: auto;
     }
-        .inputComponent, .inputSubmit{
-            width: 130%;
-            margin-bottom: 37px;
-        }
+    .inputComponent, .inputSubmit{
+        width: 130%;
+        margin-bottom: 37px;
+    }
 
     .containerLoginSign{
-        padding: 30px 0 17px 0;
+        padding: 30px 0 30px 0;
     }
     
 

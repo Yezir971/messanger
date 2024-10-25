@@ -109,7 +109,7 @@ function Connexion(){
 
                         <input className="inputSubmit" type="submit" value={"connexion"}/>
                     </form>
-                    <p className="texteSwitch">Pas de compte, <span onClick={()=> toggle("inscription")} >inscrivez-vous</span></p>
+                    <p className="texteSwitch">Pas de compte ? <span onClick={()=> toggle("inscription")} >inscrivez-vous</span></p>
                 </div>
             </div>
             
